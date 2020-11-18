@@ -1,0 +1,9 @@
+.home__button_row {
+  display: flex;
+  justify-content: center;
+}
+
+.home__button_row > * {
+  text-align: center;
+  flex: 1;
+}
