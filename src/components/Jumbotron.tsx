@@ -1,9 +1,17 @@
 import React from 'react';
 import '../styles/Jumbotron.css';
 
-const Jumbotron: React.FunctionComponent = () => (
+type JumbotronProps = {
+  title?: string,
+  subHeader?: string
+};
+
+const Jumbotron: React.FunctionComponent<JumbotronProps> = ({ title = 'CityPop', subHeader }) => (
   <div className="wrapper">
-    <h1>CityPop</h1>
+    <div>
+      <h1>{ title }</h1>
+      { subHeader != null ? <h3>{ subHeader }</h3> : null }
+    </div>
   </div>
 );
 
