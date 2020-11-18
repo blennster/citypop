@@ -17,6 +17,13 @@ const SearchPage: React.FunctionComponent<{ type: 'Country' | 'City' }> = ({ typ
   const [errorStatus, setErrorStatus] = useState({ error: false, errorMessage: '' });
 
   const search = async () => {
+    if (query === '') {
+      setErrorStatus({
+        error: true,
+        errorMessage: `You need to enter a ${type.toLowerCase()} in the input below.`,
+      });
+      return;
+    }
     setLoading(true);
     const res = await apiSearchQuery(query, isCountry);
 
