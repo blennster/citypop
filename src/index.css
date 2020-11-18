@@ -28,6 +28,7 @@ a {
   color: black;
 }
 
+/* Responsive media queries for mobile devices. */
 @media (max-width: 900px) {
   #App {
     width: 50vw;

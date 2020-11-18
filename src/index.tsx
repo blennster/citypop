@@ -9,6 +9,11 @@ import Home from './pages/Home';
 import SearchPage from './pages/SearchPage';
 import reportWebVitals from './reportWebVitals';
 
+/**
+ * Setup all basic stuff. Routing is done using react router and
+ * slugs are used to enable the ability to send the current link
+ * to other users.
+ */
 ReactDOM.render(
   <React.StrictMode>
     <div id="AppWrapper">
