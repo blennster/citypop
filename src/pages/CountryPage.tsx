@@ -5,6 +5,7 @@ import Button from '../components/Button';
 import { apiQuery } from '../util';
 import '../styles/CountryPage.css';
 import Jumbotron from '../components/Jumbotron';
+import Loading from '../components/Loading';
 
 type DataType = {
   city: string,
@@ -49,7 +50,7 @@ const CountryPage: React.FunctionComponent = () => {
   return (
     <div>
       <Jumbotron subHeader={data?.[0].country ?? ''} />
-      { loading ? <h1>Loading</h1> : citiesList }
+      { loading ? <Loading /> : citiesList }
     </div>
   );
 };

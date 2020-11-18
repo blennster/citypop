@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { apiQuery } from '../util';
 import Jumbotron from '../components/Jumbotron';
 import '../styles/CityPage.css';
+import Loading from '../components/Loading';
 
 const CityPage: React.FunctionComponent = () => {
   const { country, city } = useParams<{ country: string, city: string }>();
@@ -36,7 +37,7 @@ const CityPage: React.FunctionComponent = () => {
   return (
     <div>
       <Jumbotron subHeader={data != null ? `${data?.name}, ${data?.country}` : ''} />
-      { loading ? <h1>Loading</h1> : populationView }
+      { loading ? <Loading /> : populationView }
     </div>
   );
 };
