@@ -11,25 +11,27 @@ import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Switch>
-        <Route exact path="/">
-          <Home />
-        </Route>
-        <Route exact path="/search-by-country">
-          <SearchPage type="Country" />
-        </Route>
-        <Route exact path="/search-by-city">
-          <SearchPage type="City" />
-        </Route>
-        <Route exact path="/location/:country">
-          <CountryPage />
-        </Route>
-        <Route exact path="/location/:country/:city">
-          <CityPage />
-        </Route>
-      </Switch>
-    </BrowserRouter>
+    <div id="App">
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route exact path="/search-by-country">
+            <SearchPage type="Country" />
+          </Route>
+          <Route exact path="/search-by-city">
+            <SearchPage type="City" />
+          </Route>
+          <Route exact path="/location/:country">
+            <CountryPage />
+          </Route>
+          <Route exact path="/location/:country/:city">
+            <CityPage />
+          </Route>
+        </Switch>
+      </BrowserRouter>
+    </div>
   </React.StrictMode>,
   document.getElementById('root'),
 );
