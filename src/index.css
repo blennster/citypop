@@ -27,3 +27,21 @@ a {
   text-decoration: none;
   color: black;
 }
+
+@media (max-width: 900px) {
+  #App {
+    width: 50vw;
+  }
+}
+
+@media (max-width: 600px) {
+  #App {
+    width: 70vw;
+  }
+}
+
+@media (max-width: 400px) {
+  #App {
+    width: 85vw;
+  }
+}
