@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import Jumbotron from '../components/Jumbotron';
+
 import { apiQuery } from '../util';
+import Jumbotron from '../components/Jumbotron';
+import '../styles/CityPage.css';
 
 const CityPage: React.FunctionComponent = () => {
   const { country, city } = useParams<{ country: string, city: string }>();
   const [loading, setLoading] = useState(true);
-  const [data, setData] = useState<{ name: string, poulation: number }>();
+  const [data, setData] = useState<{ name: string, country: string, poulation: number }>();
 
   useEffect(() => {
     const fetch = async () => {
@@ -16,6 +18,7 @@ const CityPage: React.FunctionComponent = () => {
         setData({
           name: res.geonames[0].name,
           poulation: res.geonames[0].population,
+          country: res.geonames[0].countryName,
         });
         setLoading(false);
       }
@@ -24,13 +27,16 @@ const CityPage: React.FunctionComponent = () => {
     fetch();
   }, []);
 
-  if (loading) {
-    return <h1>Loading</h1>;
-  }
+  const populationView = (
+    <div className="city_page__population">
+      <h5>Population</h5>
+      <h2>{ data?.poulation }</h2>
+    </div>
+  );
   return (
     <div>
-      <Jumbotron />
-      { `${data?.name} ${data?.poulation}`}
+      <Jumbotron subHeader={data != null ? `${data?.name}, ${data?.country}` : ''} />
+      { loading ? <h1>Loading</h1> : populationView }
     </div>
   );
 };
