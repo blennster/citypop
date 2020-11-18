@@ -2,7 +2,7 @@ import React from 'react';
 import '../styles/Error.css';
 
 type ErrorProps = {
-  message?:string
+  message?: JSX.Element | string
 };
 
 const Error: React.FunctionComponent<ErrorProps> = ({ message }) => (
