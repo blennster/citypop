@@ -54,7 +54,7 @@ const SearchPage: React.FunctionComponent<{ type: 'Country' | 'City' }> = ({ typ
       <Jumbotron subHeader={`Search by ${type}`} />
       { errorStatus.error ? <Error message={errorStatus.errorMessage} /> : null }
       <form className="search_page__inputs" onSubmit={(e) => { e.preventDefault(); search(); }}>
-        <input type="text" value={query} onChange={(e) => setQuery(e.target.value)} />
+        <input type="text" value={query} placeholder={type} onChange={(e) => setQuery(e.target.value)} />
         { loading ? <Loading /> : (
           <Button onClick={search}>
             <img src={searchIcon} alt="Search" />
