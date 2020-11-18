@@ -5,10 +5,12 @@ import { apiQuery } from '../util';
 import Jumbotron from '../components/Jumbotron';
 import '../styles/CityPage.css';
 import Loading from '../components/Loading';
+import Error from '../components/Error';
 
 const CityPage: React.FunctionComponent = () => {
   const { country, city } = useParams<{ country: string, city: string }>();
   const [loading, setLoading] = useState(true);
+  const [errorStatus, setErrorStatus] = useState({ error: false, errorMessage: '' });
   const [data, setData] = useState<{ name: string, country: string, poulation: number }>();
 
   useEffect(() => {
@@ -16,13 +18,25 @@ const CityPage: React.FunctionComponent = () => {
       const res = await apiQuery(country, city);
 
       if (res != null) {
-        setData({
-          name: res.geonames[0].name,
-          poulation: res.geonames[0].population,
-          country: res.geonames[0].countryName,
+        if (res.totalResultsCount > 0) {
+          setData({
+            name: res.geonames[0].name,
+            poulation: res.geonames[0].population,
+            country: res.geonames[0].countryName,
+          });
+        } else {
+          setErrorStatus({
+            error: true,
+            errorMessage: 'That city was not found.',
+          });
+        }
+      } else {
+        setErrorStatus({
+          error: true,
+          errorMessage: 'There was an error reaching the API. Please try again later.',
         });
-        setLoading(false);
       }
+      setLoading(false);
     };
 
     fetch();
@@ -34,10 +48,20 @@ const CityPage: React.FunctionComponent = () => {
       <h2>{ data?.poulation }</h2>
     </div>
   );
+
+  let content = <></>;
+
+  if (errorStatus.error) {
+    content = <Error message={errorStatus.errorMessage} />;
+  } else if (loading) {
+    content = <Loading />;
+  } else {
+    content = populationView;
+  }
   return (
     <div>
       <Jumbotron subHeader={data != null ? `${data?.name}, ${data?.country}` : ''} />
-      { loading ? <Loading /> : populationView }
+      { content }
     </div>
   );
 };
