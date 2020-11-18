@@ -3,9 +3,9 @@ import { useParams } from 'react-router-dom';
 
 import { apiQuery } from '../util';
 import Jumbotron from '../components/Jumbotron';
-import '../styles/CityPage.css';
 import Loading from '../components/Loading';
 import Error from '../components/Error';
+import '../styles/CityPage.css';
 
 const CityPage: React.FunctionComponent = () => {
   const { country, city } = useParams<{ country: string, city: string }>();
@@ -19,6 +19,7 @@ const CityPage: React.FunctionComponent = () => {
 
       if (res != null) {
         if (res.totalResultsCount > 0) {
+          // Use the first result since it is most accurate.
           setData({
             name: res.geonames[0].name,
             poulation: res.geonames[0].population,

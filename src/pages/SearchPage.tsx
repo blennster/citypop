@@ -4,10 +4,10 @@ import Jumbotron from '../components/Jumbotron';
 
 import { apiSearchQuery } from '../util';
 import Button from '../components/Button';
-import '../styles/SearchPage.css';
 import searchIcon from '../search.svg';
 import Loading from '../components/Loading';
 import Error from '../components/Error';
+import '../styles/SearchPage.css';
 
 const SearchPage: React.FunctionComponent<{ type: 'Country' | 'City' }> = ({ type }) => {
   const isCountry = type === 'Country';
