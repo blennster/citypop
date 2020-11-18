@@ -6,6 +6,7 @@ import './index.css';
 import CityPage from './pages/CityPage';
 import CountryPage from './pages/CountryPage';
 import Home from './pages/Home';
+import NotFoundPage from './pages/NotFoundPage';
 import SearchPage from './pages/SearchPage';
 import reportWebVitals from './reportWebVitals';
 
@@ -34,6 +35,9 @@ ReactDOM.render(
             </Route>
             <Route exact path="/location/:country/:city">
               <CityPage />
+            </Route>
+            <Route>
+              <NotFoundPage />
             </Route>
           </Switch>
         </BrowserRouter>
