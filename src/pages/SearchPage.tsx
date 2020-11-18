@@ -3,6 +3,9 @@ import { useHistory } from 'react-router-dom';
 import Jumbotron from '../components/Jumbotron';
 
 import { apiSearchQuery } from '../util';
+import Button from '../components/Button';
+import '../styles/SearchPage.css';
+import searchIcon from '../search.svg';
 
 const SearchPage: React.FunctionComponent<{ type: 'Country' | 'City' }> = ({ type }) => {
   const isCountry = type === 'Country';
@@ -24,8 +27,12 @@ const SearchPage: React.FunctionComponent<{ type: 'Country' | 'City' }> = ({ typ
   return (
     <div>
       <Jumbotron subHeader={`Search by ${type}`} />
-      <input type="text" value={query} onChange={(e) => setQuery(e.target.value)} />
-      <button type="button" onClick={search}>Submit</button>
+      <div className="search_page__inputs">
+        <input type="text" value={query} onChange={(e) => setQuery(e.target.value)} />
+        <Button onClick={search}>
+          <img src={searchIcon} alt="Search" />
+        </Button>
+      </div>
     </div>
   );
 };
