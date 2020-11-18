@@ -12,9 +12,17 @@ code {
     monospace;
 }
 
-#App {
+#AppWrapper {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+}
+
+#App {
+  width: 30vw;
+}
+
+a {
+  text-decoration: none;
 }
