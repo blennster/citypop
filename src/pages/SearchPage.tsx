@@ -15,13 +15,15 @@ const SearchPage: React.FunctionComponent<{ type: 'Country' | 'City' }> = ({ typ
     if (res != null) {
       if (isCountry) {
         history.push(`/location/${res.geonames[0].countryCode}`);
+      } else {
+        history.push(`/location/${res.geonames[0].countryCode}/${res.geonames[0].name}`);
       }
     }
   };
 
   return (
     <div>
-      <Jumbotron />
+      <Jumbotron subHeader={`Search by ${type}`} />
       <input type="text" value={query} onChange={(e) => setQuery(e.target.value)} />
       <button type="button" onClick={search}>Submit</button>
     </div>
