@@ -23,7 +23,7 @@ const CountryPage: React.FunctionComponent = () => {
 
   useEffect(() => {
     const fetch = async () => {
-      const res = await apiQuery(country, country);
+      const res = await apiQuery(country);
 
       if (res != null) {
         if (res.totalResultsCount > 0) {
