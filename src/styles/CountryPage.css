@@ -1,0 +1,4 @@
+.country_page__cities {
+  display: flex;
+  flex-direction: column;
+}

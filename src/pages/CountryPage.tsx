@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
+import Button from '../components/Button';
 
 import { apiQuery } from '../util';
+import '../styles/CountryPage.css';
+import Jumbotron from '../components/Jumbotron';
 
 type DataType = {
   city: string,
@@ -10,9 +13,10 @@ type DataType = {
 };
 
 const CountryPage: React.FunctionComponent = () => {
+  const history = useHistory();
   const { country } = useParams<{ country: string }>();
   const [loading, setLoading] = useState(true);
-  const [data, setData] = useState<DataType[]>([]);
+  const [data, setData] = useState<DataType[]>();
 
   useEffect(() => {
     const fetch = async () => {
@@ -32,12 +36,20 @@ const CountryPage: React.FunctionComponent = () => {
     fetch();
   }, []);
 
-  if (loading) {
-    return <h1>Loading</h1>;
-  }
+  const citiesList = (
+    <div className="country_page__cities">
+      {data?.map((e) => (
+        <Button onClick={() => history.push(`/location/${e.code}/${e.city}`)}>
+          {e.city}
+        </Button>
+      ))}
+    </div>
+  );
+
   return (
     <div>
-      {data.map((e) => <Link to={`/location/${e.code}/${e.city}`}>{e.city}</Link>)}
+      <Jumbotron subHeader={data?.[0].country ?? ''} />
+      { loading ? <h1>Loading</h1> : citiesList }
     </div>
   );
 };
