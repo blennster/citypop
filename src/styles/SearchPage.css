@@ -10,4 +10,7 @@
 
 .search_page__inputs button {
   align-self: center;
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
 }
